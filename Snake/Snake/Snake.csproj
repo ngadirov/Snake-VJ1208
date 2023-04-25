@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayList.cs" />
     <Compile Include="Bocado.cs" />
     <Compile Include="Giro.cs" />
     <Compile Include="Marcador.cs" />

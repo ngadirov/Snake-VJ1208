@@ -8,5 +8,7 @@ namespace Snake
 {
     internal class Giro
     {
+        public List<string> giros;
+
     }
 }

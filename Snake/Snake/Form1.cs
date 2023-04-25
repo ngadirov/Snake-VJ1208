@@ -37,10 +37,10 @@ namespace Snake
             this.Width = anchoEscenario;
             this.Height = altoEscenario;
             this.BackColor = Color.DarkRed;
-            serpiente = new Serpiente(); // Aquí se crea
-            Controls.Add(Serpiente.MiPictureBox); // Aquí se añade a Controls
+            serpiente = new Serpiente(new Point(this.Width/2, this.Height/2)); // Aquí se crea
+            Controls.Add(serpiente.picBox); // Aquí se añade a Controls
             comida = new Comidas();
-            Controls.Add(comida.MiPictureBox);
+            //Controls.Add(comida.MiPictureBox);
             marcador = new Marcador();
             Controls.Add(marcador.Informacion);
             marcador.Informacion.SendToBack();
@@ -76,6 +76,7 @@ namespace Snake
             //double tiempoJuego = tiempo.ElapsedMilliseconds;
             //double tiempoTranscurrido = tiempoJuego-ultimoTiempo;
             //ultimoTiempo = tiempoJuego;
+            this.BackColor = Color.Gray;
             this.Invalidate();
     }
     }
