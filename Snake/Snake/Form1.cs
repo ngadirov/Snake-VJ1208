@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,12 +19,14 @@ namespace Snake
         private Marcador marcador;
         private Serpiente serpiente;
         private Comidas comida;
+        private Giro direcciones;
         private const Keys arriba = Keys.Up;
         private const Keys abajo = Keys.Down;
         private const Keys izquierda = Keys.Left;
         private const Keys derecha = Keys.Right;
         private Stopwatch tiempo;
         private double ultimoTiempo;
+        private Direcciones ultimaDireccion;
 
         
         public Form1()
@@ -47,8 +50,10 @@ namespace Snake
             tiempo = new Stopwatch();
             tiempo.Start();
             ultimoTiempo = 0.0;
+            direcciones = new Giro();
+            ultimaDireccion = Direcciones.Arriba;
 
-    }
+	}
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -60,16 +65,24 @@ namespace Snake
             switch (e.KeyCode)
             {
                 case arriba:
-                    
+					ultimaDireccion = Direcciones.Arriba;
+					break;
                 case abajo:
-                    
-                case izquierda:
-                    
-                case derecha:
-                default:
-                    break;
+					ultimaDireccion = Direcciones.Abajo;
+					break;
+				case izquierda:
+					ultimaDireccion = Direcciones.Izquierda;
+					break;
+				case derecha:
+					ultimaDireccion = Direcciones.Derecha;
+					break;
+				//default:
+    //                ultimaDireccion = Direcciones.Arriba;
+    //                break;
             }
         }
+
+
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
@@ -77,7 +90,9 @@ namespace Snake
             //double tiempoTranscurrido = tiempoJuego-ultimoTiempo;
             //ultimoTiempo = tiempoJuego;
             this.BackColor = Color.Gray;
-            this.Invalidate();
-    }
+			serpiente.MoverSerpiente(ultimaDireccion);
+			Thread.Sleep(20);
+			this.Invalidate();
+        }
     }
 }

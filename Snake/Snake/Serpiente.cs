@@ -24,5 +24,23 @@ namespace Snake
             
         }
 
+        public void MoverSerpiente(Direcciones d)
+        {
+            switch (d)
+            {
+				case Direcciones.Arriba:
+					picBox.Top -= 1;
+					break;
+				case Direcciones.Abajo:
+					picBox.Top += 1;
+					break;
+				case Direcciones.Izquierda:
+					picBox.Left -= 1;
+					break;
+				case Direcciones.Derecha:
+					picBox.Left += 1;
+					break;
+			}
+        }
     }
 }
