@@ -11,6 +11,6 @@ namespace Snake
     {
         public List<Direcciones> giros;
 
-
+        
     }
 }

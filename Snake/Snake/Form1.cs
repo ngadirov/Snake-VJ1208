@@ -42,7 +42,9 @@ namespace Snake
             this.BackColor = Color.DarkRed;
             serpiente = new Serpiente(new Point(this.Width/2, this.Height/2)); // Aquí se crea
             Controls.Add(serpiente.picBox); // Aquí se añade a Controls
-            comida = new Comidas();
+            Controls.Add(serpiente.picCuerpo[0]);
+			Controls.Add(serpiente.picCuerpo[1]);
+			comida = new Comidas();
             //Controls.Add(comida.MiPictureBox);
             marcador = new Marcador();
             Controls.Add(marcador.Informacion);
@@ -50,10 +52,10 @@ namespace Snake
             tiempo = new Stopwatch();
             tiempo.Start();
             ultimoTiempo = 0.0;
-            direcciones = new Giro();
             ultimaDireccion = Direcciones.Arriba;
-
-	}
+			direcciones = new Giro();
+            direcciones.giros = new List<Direcciones>();
+		}
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -86,12 +88,14 @@ namespace Snake
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            //double tiempoJuego = tiempo.ElapsedMilliseconds;
-            //double tiempoTranscurrido = tiempoJuego-ultimoTiempo;
-            //ultimoTiempo = tiempoJuego;
-            this.BackColor = Color.Gray;
+			//double tiempoJuego = tiempo.ElapsedMilliseconds;
+			//double tiempoTranscurrido = tiempoJuego-ultimoTiempo;
+			//ultimoTiempo = tiempoJuego;
+			this.BackColor = Color.Gray;
+			direcciones.giros.Add(ultimaDireccion);
 			serpiente.MoverSerpiente(ultimaDireccion);
-			Thread.Sleep(20);
+            serpiente.MoverCuerpo(direcciones);
+			Thread.Sleep(40);
 			this.Invalidate();
         }
     }
